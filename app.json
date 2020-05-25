@@ -1,0 +1,15 @@
+{
+    "apps" : [{
+      "name"         : "Redis-CLiMonitor",
+      "script"       : "redis-cli",
+      "args"         : "monitor",
+      "listen_timeout" : 3000
+    },
+    {
+      "name"         : "Covid19-Redis",
+      "script"       : "laravel-echo-server",
+      "args"         : "start",
+      "listen_timeout" : 3000
+    }]
+  }
+
