@@ -10,3 +10,16 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .env
+.env.example
+Supprimerait .DS_Store
+Supprimerait app/Http/Controllers/Controllers/.DS_Store
+Supprimerait database/migrations/.DS_Store
+Supprimerait public/.DS_Store
+Supprimerait public/frontend/.DS_Store
+Supprimerait public/frontend/css/.DS_Store
+Supprimerait public/frontend/img/.DS_Store
+Supprimerait public/frontend/img/gestesbarrieres/.DS_Store
+Supprimerait public/frontend/img/home2/.DS_Store
+Supprimerait public/frontend/js/.DS_Store
+Supprimerait public/frontend/leaflet/images/.DS_Store
+Supprimerait resources/views/.DS_Store
