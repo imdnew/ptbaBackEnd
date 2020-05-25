@@ -62,10 +62,10 @@ class ObjectifStrategiqueController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ObjectifStrategique  $objectifStrategique
+     * @param  \App\ObjectifStrategique  $objectifstrategique
      * @return \Illuminate\Http\Response
      */
-    public function show(ObjectifStrategique $objectifStrategique)
+    public function show(ObjectifStrategique $objectifstrategique)
     {
         //
     }
@@ -73,10 +73,10 @@ class ObjectifStrategiqueController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ObjectifStrategique  $objectifStrategique
+     * @param  \App\ObjectifStrategique  $objectifstrategique
      * @return \Illuminate\Http\Response
      */
-    public function edit(ObjectifStrategique $objectifStrategique)
+    public function edit(ObjectifStrategique $objectifstrategique)
     {
         //
     }
@@ -85,30 +85,28 @@ class ObjectifStrategiqueController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ObjectifStrategique  $objectifStrategique
+     * @param  \App\ObjectifStrategique  $objectifstrategique
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ObjectifStrategique $objectifStrategique)
+    public function update(Request $request, ObjectifStrategique $objectifstrategique)
     {
-        $objectifStrategique->update($request->all());
+        $objectifstrategique->update($request->all());
 
-        return response()->json(new Resource($objectifStrategique), 200);
+        return response()->json(new Resource($objectifstrategique), 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ObjectifStrategique  $objectifStrategique
+     * @param  \App\ObjectifStrategique  $objectifstrategique
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ObjectifStrategique $objectifStrategique)
+    public function destroy(ObjectifStrategique $objectifstrategique)
     {
 
-        /*$objet = new Resource($objectifStrategique);
+        $objet = new Resource($objectifstrategique);
 
-        $objectifStrategique->delete();*/
-
-        $objet = ObjectifStrategique::find($objectifStrategique->id);
+        $objectifstrategique->delete();
 
         return response()->json($objet, 200);
     }
