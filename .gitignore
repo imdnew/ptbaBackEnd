@@ -11,6 +11,7 @@ npm-debug.log
 yarn-error.log
 .env
 .env.example
+.idea
 Supprimerait .DS_Store
 Supprimerait app/Http/Controllers/Controllers/.DS_Store
 Supprimerait database/migrations/.DS_Store
