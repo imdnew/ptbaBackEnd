@@ -1,8 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\ObjectifSpecifique;
+use App\Http\Resources\ObjectifSpecifique as Resource;
 use Illuminate\Http\Request;
 
 class ObjectifSpecifiqueController extends Controller
@@ -14,7 +14,20 @@ class ObjectifSpecifiqueController extends Controller
      */
     public function index()
     {
-        //
+        $liste = Resource::collection(ObjectifSpecifique::all());
+        return Response()->json($liste);
+    }
+
+    public function search($keyword)
+    {
+        $liste = Resource::collection(ObjectifSpecifique::where('libelle', 'ilike', "%$keyword%")->orderBy('id', 'DESC')->get());
+        return Response()->json($liste);
+    }
+
+    public function getDefaultList()
+    {
+        $liste = Resource::collection(ObjectifSpecifique::orderBy('id', 'DESC')->take(100)->get());
+        return Response()->json($liste);
     }
 
     /**
@@ -30,21 +43,29 @@ class ObjectifSpecifiqueController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $cs = ObjectifSpecifique::create([
+            'code' => $request->code,
+            'libelle' => $request->libelle,
+            'entite_id' => (int)$request->entite,
+
+        ]);
+
+        return Response()->json($cs);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ObjectifSpecifique  $objectifSpecifique
+     * @param \App\ObjectifSpecifique $objectifspecifique
+     *
      * @return \Illuminate\Http\Response
      */
-    public function show(ObjectifSpecifique $objectifSpecifique)
+    public function show(ObjectifSpecifique $objectifspecifique)
     {
         //
     }
@@ -52,10 +73,11 @@ class ObjectifSpecifiqueController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ObjectifSpecifique  $objectifSpecifique
+     * @param \App\ObjectifSpecifique $objectifspecifique
+     *
      * @return \Illuminate\Http\Response
      */
-    public function edit(ObjectifSpecifique $objectifSpecifique)
+    public function edit(ObjectifSpecifique $objectifspecifique)
     {
         //
     }
@@ -63,23 +85,32 @@ class ObjectifSpecifiqueController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ObjectifSpecifique  $objectifSpecifique
+     * @param \Illuminate\Http\Request $request
+     * @param \App\ObjectifSpecifique $objectifspecifique
+     *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ObjectifSpecifique $objectifSpecifique)
+    public function update(Request $request, ObjectifSpecifique $objectifspecifique)
     {
-        //
+        $objectifspecifique->update($request->all());
+
+        return response()->json(new Resource($objectifspecifique), 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ObjectifSpecifique  $objectifSpecifique
+     * @param \App\ObjectifSpecifique $objectifspecifique
+     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ObjectifSpecifique $objectifSpecifique)
+    public function destroy(ObjectifSpecifique $objectifspecifique)
     {
-        //
+
+        $objet = new Resource($objectifspecifique);
+
+        $objectifspecifique->delete();
+
+        return response()->json($objet, 200);
     }
 }

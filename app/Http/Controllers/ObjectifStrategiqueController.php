@@ -52,7 +52,7 @@ class ObjectifStrategiqueController extends Controller
         $cs =  ObjectifStrategique::create([
             'code' => $request->code,
             'libelle' => $request->libelle,
-            'entite_id' => $request->entite,
+            'entite_id' =>  (int) $request->entite,
 
         ]);
 

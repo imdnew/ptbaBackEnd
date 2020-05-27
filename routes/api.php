@@ -29,6 +29,10 @@ Route::middleware('cors')->group(function () {
     Route::get('/search/objectifstrategiques/{keyWord}', 'ObjectifStrategiqueController@search')->name('objectifstrategiques.search');
     Route::get('/default/objectifstrategiques', 'ObjectifStrategiqueController@getDefaultList')->name('objectifstrategiques.default');
 
+    Route::resource('objectifspecifiques', 'ObjectifStrategiqueController');
+    Route::get('/search/objectifspecifiques/{keyWord}', 'ObjectifSpecifiqueController@search')->name('objectifspecifiques.search');
+    Route::get('/default/objectifspecifiques', 'ObjectifSpecifiqueController@getDefaultList')->name('objectifspecifiques.default');
+
 
     Route::resource('activites', 'ActiviteController');
     Route::get('/search/hotels/{keyWord}', 'HotelController@search');
