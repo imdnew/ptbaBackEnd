@@ -21,7 +21,9 @@ class EntiteController extends Controller
 
     public function search($keyword)
     {
-        $liste = Resource::collection(Entite::where('nom','ilike',"%$keyword%")->orderBy('id','DESC')->get());
+        $liste = Resource::collection(Entite::where('nom','ilike',"%$keyword%")
+            ->orwhere('sigle','ilike',"%$keyword%")
+            ->orderBy('id','DESC')->get());
         return Response()->json($liste);
     }
 

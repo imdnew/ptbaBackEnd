@@ -21,7 +21,9 @@ class ObjectifStrategiqueController extends Controller
 
     public function search($keyword)
     {
-        $liste = Resource::collection(ObjectifStrategique::where('libelle','ilike',"%$keyword%")->orderBy('id','DESC')->get());
+        $liste = Resource::collection(ObjectifStrategique::where('libelle','ilike',"%$keyword%")
+            ->orwhere('code','ilike',"%$keyword%")
+            ->orderBy('id','DESC')->get());
         return Response()->json($liste);
     }
 
@@ -56,7 +58,7 @@ class ObjectifStrategiqueController extends Controller
 
         ]);
 
-        return Response()->json($cs);
+        return Response()->json(new Resource($cs));
     }
 
     /**

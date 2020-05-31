@@ -20,7 +20,9 @@ class ObjectifSpecifiqueController extends Controller
 
     public function search($keyword)
     {
-        $liste = Resource::collection(ObjectifSpecifique::where('libelle', 'ilike', "%$keyword%")->orderBy('id', 'DESC')->get());
+        $liste = Resource::collection(ObjectifSpecifique::where('libelle', 'ilike', "%$keyword%")
+            ->orwhere('code','ilike',"%$keyword%")
+            ->orderBy('id', 'DESC')->get());
         return Response()->json($liste);
     }
 
@@ -51,11 +53,11 @@ class ObjectifSpecifiqueController extends Controller
         $cs = ObjectifSpecifique::create([
             'code' => $request->code,
             'libelle' => $request->libelle,
-            'entite_id' => (int)$request->entite,
+            'objectif_strategique_id' => (int)$request->objectifstrategique,
 
         ]);
 
-        return Response()->json($cs);
+        return Response()->json(new Resource($cs));
     }
 
     /**
